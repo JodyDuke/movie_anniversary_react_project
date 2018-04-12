@@ -1,0 +1,66 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
+
+@media (min-width: 768px) {
+  .app {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: 1fr; } }
+.main {
+  background-color: blue;
+  flex: 1; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+.menu {
+  background-color: pink;
+  height: 100%; }
+
+.menu .logo {
+  margin: 5px 11px;
+  width: 48px;
+  height: 48px; }
+
+.desktop {
+  display: flex;
+  height: 100vh;
+  flex-direction: column; }
+
+.logo {
+  align-self: flex-start; }
+
+.desktop .logo {
+  margin-bottom: 30px; }
+
+.desktop .icon {
+  width: 26px;
+  height: 26px;
+  align-self: center;
+  margin: 15px 0px; }
+
+.desktop .footer {
+  width: 26px;
+  height: 26px;
+  margin: auto auto 20px auto; }
+
+.mobile {
+  display: flex;
+  flex-direction: row;
+  height: 60px; }
+
+.mobile .hamburger {
+  width: 26px;
+  height: 26px;
+  align-self: center;
+  margin: 14px 20px 19px auto; }
+
+.header {
+  background-color: green;
+  height: 60px; }
+
+/*# sourceMappingURL=index.css.map */

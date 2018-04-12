@@ -1,0 +1,12 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
+
+@media (min-width: 768px) {
+  .app {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-template-rows: 1fr; } }
+
+/*# sourceMappingURL=app.css.map */
