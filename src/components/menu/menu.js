@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Logo from '../../images/logo';
 import MenuMobile from './responsive_components/menu_mobile';
 import MenuDesktop from './responsive_components/menu_desktop';
 
