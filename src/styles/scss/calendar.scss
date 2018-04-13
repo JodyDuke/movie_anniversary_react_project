@@ -1,0 +1,28 @@
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 20px repeat(5, 1fr);
+    grid-gap: 3px;
+    padding: 10px;
+    height: calc(100% - 90px);
+}
+
+.calendar .days {
+    text-align: right;
+}
+
+.calendar-node {
+    background-color: orange;
+}
+
+.calendar-node h4 {
+    margin: 5px;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .calendar {
+        display: flex;
+        flex-direction: column;
+    }
+}
