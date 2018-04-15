@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
 import Header from '../header/header';
-import CalendarNode from './calendar_node'
+import { calendarMap } from "../utils/map_calendar.js";
 
 class Main extends Component {
     constructor(props){
@@ -21,15 +21,7 @@ componentDidMount() {
 }
 
     render() {
-        const calendarMap = () => {
-            let result = []
-            //let firstDayOfMonth = new Date(this.state.currentYear, this.state.currentMonth, 1).getDay()
-            let daysInMonth = new Date(this.state.currentYear, this.state.currentMonth, 0).getDate()
-            for(let i = 1 ; i <= daysInMonth ; i++){
-                result.push(<CalendarNode key={i} day={i} />)
-            }
-            return result;        
-        }
+        const calendar = calendarMap(this.state.currentMonth, this.state.currentYear);
 
         return (
             <div className="main">
@@ -42,7 +34,7 @@ componentDidMount() {
                     <div className="days">Thu</div>                  
                     <div className="days">Fri</div>                  
                     <div className="days">Sat</div>                  
-                    {calendarMap()}
+                    {calendar}
                 </div>
             </div>
         )
