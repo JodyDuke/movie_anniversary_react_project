@@ -13,6 +13,7 @@
 
 .calendar-node {
     background-color: orange;
+    min-height: 100px;
 }
 
 .calendar-node h4 {
@@ -24,5 +25,13 @@
     .calendar {
         display: flex;
         flex-direction: column;
+    }
+    
+    .calendar-node {
+        margin: 5px 0px;
+    }
+
+    .calendar .days {
+        display: none;
     }
 }

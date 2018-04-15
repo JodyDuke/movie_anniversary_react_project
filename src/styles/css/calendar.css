@@ -10,7 +10,8 @@
   text-align: right; }
 
 .calendar-node {
-  background-color: orange; }
+  background-color: orange;
+  min-height: 100px; }
 
 .calendar-node h4 {
   margin: 5px;
@@ -19,6 +20,12 @@
 @media (max-width: 768px) {
   .calendar {
     display: flex;
-    flex-direction: column; } }
+    flex-direction: column; }
+
+  .calendar-node {
+    margin: 5px 0px; }
+
+  .calendar .days {
+    display: none; } }
 
 /*# sourceMappingURL=calendar.css.map */
