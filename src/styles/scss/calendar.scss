@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 20px 1fr;
-    grid-gap: 3px;
+    grid-gap: 2px;
     padding: 10px;
     height: calc(100% - 90px);
     grid-auto-rows: 1fr;
@@ -29,11 +29,7 @@
     }
     
     .calendar-node {
-        margin: 5px 0px;
-    }
-
-    .calendar .days {
-        display: none;
+        margin: 1px 0px;
     }
 
     .no-day {
