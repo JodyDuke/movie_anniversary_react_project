@@ -4,8 +4,11 @@ import CalendarNode from '../main/calendar_node';
 export const calendarMap = (month, year) => {
     let result = []
     let dayCount = 1;
+    //standard number of nodes on the desktop calendar 7 * 5
     let calendarLength = 35;
+    //this variable gets the days in the month. Month has to be +1 because the 0 day is the last day of the month before.
     let daysInMonth = new Date(year, (month + 1), 0).getDate()
+    //this var gets the first day of the month as an integer between 0-6 (0 is Sunday)
     let firstDay = (new Date(year, month, 1).getDay())
     //if statement ensures the day starts on the right day with Sunday being at the end of the week (Sunday start of the week in Date() object)
     if (firstDay === 0) {
@@ -24,13 +27,15 @@ export const calendarMap = (month, year) => {
     //is the same as the loop counter.
     for (let e = 0; e < calendarLength; e++) {
         if (firstDay === e && daysInMonth > 0) {
-            result.push(<CalendarNode key={e} day={dayCount} />)
+            //if firstDay matches current loop count then day count starts and is added to the node to be displayed as the date.
+            result.push(<CalendarNode key={e} day={dayCount} class="calendar-node"/>)
             firstDay += 1;
             daysInMonth -= 1;
             dayCount += 1;
         }
         else {
-            result.push(<CalendarNode key={e} day="" />)
+            //class is added here to allow for a no-day className which can then be removed on mobile with display: none
+            result.push(<CalendarNode key={e} day="" class="calendar-node no-day" />)
         }
     }
     return result;
