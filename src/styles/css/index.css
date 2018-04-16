@@ -95,8 +95,22 @@ body {
   margin: 20px 20px 40px auto; }
 
 .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
   background-color: green;
-  height: 60px; }
+  height: 60px;
+  font-size: 120%; }
+  .header button {
+    padding: 10px; }
+  .header button svg {
+    height: 15px;
+    width: 15px; }
+  .header .month {
+    padding: 0px 5px; }
+  .header .year {
+    padding: 0px 10px 0px 0px; }
 
 .calendar {
   display: grid;
@@ -112,7 +126,6 @@ body {
 
 .calendar-node {
   background-color: orange;
-  min-width: 120px;
   min-height: 100px; }
 
 .calendar-node h4 {
@@ -128,6 +141,18 @@ body {
     margin: 5px 0px; }
 
   .calendar .days {
+    display: none; }
+
+  .no-day {
     display: none; } }
+button {
+  border: 0;
+  padding: 0;
+  background-color: none;
+  background: none;
+  outline: 0; }
+
+button:hover {
+  cursor: pointer; }
 
 /*# sourceMappingURL=index.css.map */

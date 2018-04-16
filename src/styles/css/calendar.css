@@ -12,7 +12,6 @@
 
 .calendar-node {
   background-color: orange;
-  min-width: 120px;
   min-height: 100px; }
 
 .calendar-node h4 {
@@ -28,6 +27,9 @@
     margin: 5px 0px; }
 
   .calendar .days {
+    display: none; }
+
+  .no-day {
     display: none; } }
 
 /*# sourceMappingURL=calendar.css.map */

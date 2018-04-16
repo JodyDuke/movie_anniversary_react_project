@@ -1,4 +1,26 @@
 .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
     background-color: green;
     height: 60px;
+    font-size: 120%;
+
+    button {
+        padding: 10px;
+    }
+
+    button svg {
+        height: 15px;
+        width: 15px;
+    }
+
+    .month {
+        padding: 0px 5px;
+    }
+
+    .year {
+        padding: 0px 10px 0px 0px;
+    }
 }

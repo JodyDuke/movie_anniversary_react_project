@@ -14,7 +14,6 @@
 
 .calendar-node {
     background-color: orange;
-    min-width: 120px;
     min-height: 100px;
 }
 
@@ -34,6 +33,10 @@
     }
 
     .calendar .days {
+        display: none;
+    }
+
+    .no-day {
         display: none;
     }
 }
