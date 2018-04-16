@@ -1,16 +1,18 @@
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 20px repeat(5, 1fr);
+  grid-template-rows: 20px 1fr;
   grid-gap: 3px;
   padding: 10px;
-  height: calc(100% - 90px); }
+  height: calc(100% - 90px);
+  grid-auto-rows: 1fr; }
 
 .calendar .days {
   text-align: right; }
 
 .calendar-node {
   background-color: orange;
+  min-width: 120px;
   min-height: 100px; }
 
 .calendar-node h4 {
