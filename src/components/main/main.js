@@ -15,7 +15,7 @@ class Main extends Component {
         this.handleDateChange = this.handleDateChange.bind(this)
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const todaysDate = new Date();
         this.setState({
             currentMonth: parseInt(todaysDate.getMonth().toString(), 10),
@@ -63,7 +63,7 @@ class Main extends Component {
             <div className="main">
                 <Header handleDateChange={this.handleDateChange} month={this.state.currentMonth} year={this.state.currentYear}/>
                 
-                    {this.props.responsive === 'desktop' ? <CalendarDesktop data={this.state}/> : <CalendarMobile data={this.state} />}
+                    {this.props.responsive === 'desktop' ? <CalendarDesktop data={this.state}/> : <CalendarMobile handleDateChange={this.handleDateChange} data={this.state} />}
 
             </div>
         )
