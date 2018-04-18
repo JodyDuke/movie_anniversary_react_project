@@ -13,7 +13,7 @@ class Main extends Component {
             currentMonth : null,
             currentYear : null,
             firstDayOfMonth : null,
-            hits : []
+            apiData : []
         }
 
         this.handleDateChange = this.handleDateChange.bind(this)
@@ -28,7 +28,8 @@ class Main extends Component {
     } 
 
     componentDidMount() {
-        fetch(omdb.url + omdb.testId + '&apikey=' + config.OMDB_KEY)
+        fetch('https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&page=1&include_video=false&include_adult=false&sort_by=release_date.desc&language=en-US&' + config.TMBD_KEY)
+        //fetch(omdb.url + omdb.testId + '&apikey=' + config.OMDB_KEY)
         // fetch(movieGlu.url + 'filmsNowShowing/?n=10', {
         //     headers : {
         //         'client' : config.MOVIEGLU_USER,
@@ -40,7 +41,7 @@ class Main extends Component {
         //     method : 'GET'
         // })
             .then(response => response.json())
-            .then(data => this.setState({ hits: data }));
+            .then(data => this.setState({ apiData: data }));
         
     }
 
