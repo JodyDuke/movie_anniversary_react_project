@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "express": "^4.16.3",
-    "express-http-proxy": "^1.1.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-scripts": "1.1.4"
@@ -15,5 +14,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "sass": "sass --watch src/styles/scss:src/styles/css"
-  }
+  },
+  "devDependencies": {}
 }
