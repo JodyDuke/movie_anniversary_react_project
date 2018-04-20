@@ -1,7 +1,7 @@
 import React from "react";
 import CalendarNode from '../main/calendar_node';
 
-export const calendarMap = (month, year) => {
+export const calendarMap = (month, year, data = []) => {
     let result = []
     let dayCount = 1;
     //standard number of nodes on the desktop calendar 7 * 5
@@ -26,9 +26,16 @@ export const calendarMap = (month, year) => {
     //for loop iterates through cells in the calendar. Starts numbering when the first day of the month
     //is the same as the loop counter.
     for (let e = 0; e < calendarLength; e++) {
+        let titles = []
+        for(let d = 0 ; d < data.length ; d++) {
+            if (firstDay === e && daysInMonth > 0 && data[d].day === e) {
+                titles.push(data[d])
+            }
+        }
+
         if (firstDay === e && daysInMonth > 0) {
             //if firstDay matches current loop count then day count starts and is added to the node to be displayed as the date.
-            result.push(<CalendarNode key={e} day={dayCount} class="calendar-node"/>)
+            result.push(<CalendarNode key={e} day={dayCount} titles={titles} class="calendar-node" />)
             firstDay += 1;
             daysInMonth -= 1;
             dayCount += 1;
@@ -38,6 +45,9 @@ export const calendarMap = (month, year) => {
             result.push(<CalendarNode key={e} day="" class="calendar-node no-day" />)
         }
     }
+
+    //console.log(result)
+
+
     return result;
 }
-
