@@ -3,8 +3,9 @@ import Header from '../header/header';
 import CalendarDesktop from "./responsive_components/calendar_desktop";
 import CalendarMobile from "./responsive_components/calendar_mobile";
 import { config } from '../../api/api_keys';
-import { omdb } from '../../api/omdb';
-import { movieGlu } from '../../api/movie_glu';
+//import { omdb } from '../../api/omdb';
+import { tmdb } from '../../api/tmdb';
+//import { movieGlu } from '../../api/movie_glu';
 
 class Main extends Component {
     constructor(props){
@@ -13,10 +14,11 @@ class Main extends Component {
             currentMonth : null,
             currentYear : null,
             firstDayOfMonth : null,
-            apiData : []
+            apiData : {}
         }
 
         this.handleDateChange = this.handleDateChange.bind(this)
+        this.getMovies = this.getMovies.bind(this)
     }
 
     componentWillMount() {
@@ -28,21 +30,18 @@ class Main extends Component {
     } 
 
     componentDidMount() {
-        fetch('https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&page=1&include_video=false&include_adult=false&sort_by=release_date.desc&language=en-US&' + config.TMBD_KEY)
-        //fetch(omdb.url + omdb.testId + '&apikey=' + config.OMDB_KEY)
-        // fetch(movieGlu.url + 'filmsNowShowing/?n=10', {
-        //     headers : {
-        //         'client' : config.MOVIEGLU_USER,
-        //         'x-api-key' : config.MOVIEGLU_KEY,
-        //         'Authorisation' : config.MOVIEGLU_AUTH,
-        //         'api-version' : 'v102',
-        //         'geolocation': '51.5074;0.1278'
-        //     },
-        //     method : 'GET'
-        // })
+        this.getMovies()
+    }
+
+    getMovies() {
+        let daysInMonth = new Date(this.state.currentYear, (this.state.currentMonth + 1), 0).getDate();
+        let y = this.state.currentYear - 25;
+        let m = this.state.currentMonth + 1;
+        fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + y + '-' + m + '-' + 1 + tmdb.releaseLessThan + y + '-' + m + '-' + daysInMonth + tmdb.endString, {
+            'callback': 'test'
+        })
             .then(response => response.json())
             .then(data => this.setState({ apiData: data }));
-        
     }
 
 
@@ -76,16 +75,17 @@ class Main extends Component {
         this.setState({
             currentMonth : newMonth,
             currentYear : newYear
-        })
+        }, () => this.getMovies())
     }
 
 
     render() {
-        console.log(this.state.hits)
         return (
             <div className="main">
                 <Header handleDateChange={this.handleDateChange} month={this.state.currentMonth} year={this.state.currentYear}/> 
-                    {this.props.responsive === 'desktop' ? <CalendarDesktop data={this.state}/> : <CalendarMobile handleDateChange={this.handleDateChange} data={this.state} />}
+                    {this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.currentMonth} year={this.state.currentYear} data={this.state.apiData}/> 
+                    : 
+                    <CalendarMobile handleDateChange={this.handleDateChange} data={this.state} />}
             </div>
         )
     }
