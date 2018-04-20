@@ -40,6 +40,7 @@ class CalendarMobile extends Component {
     };
 
     render() {
+        console.log(this.props.data.apiData)
         return (
             <div className="calendar">
                 {this.state.calendarArr}

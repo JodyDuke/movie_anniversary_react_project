@@ -1,8 +1,13 @@
 import React,{ Component } from "react";
 import { numToMonth } from '../utils/num_to_month';
 
+
+
 export default class CalendarNode extends Component {
+
     render() {
+        console.log(this.props.titles)
+
         return (
             <div className={this.props.class}>
                 <h4>{this.props.day}</h4>
