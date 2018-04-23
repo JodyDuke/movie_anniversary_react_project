@@ -9,6 +9,7 @@
     grid-template-columns: 70px 1fr;
     grid-template-rows: 1fr; } }
 .main {
+  background-color: white;
   flex: 1; }
 
 body {
