@@ -8,6 +8,7 @@ export default class Settings extends Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     handleSubmit(e) {
@@ -15,21 +16,24 @@ export default class Settings extends Component {
 
     }
 
+    handleChange(e) {
+        this.props.onSubmit(e.target.value)
+    }
+
     render() { 
         return (
             <div>
                 <div>Settings</div>
                 <br />
-                <form className="yearSelect" onSubmit={this.handleSubmit}>
+                <form className="yearSelect">
                     {this.state.yearCheckOpts.map((e, k) => {
                         return (
                             <label key={k} className="checkbox">
-                                <input type="checkbox" value={e} checked={this.props.yearsSelect.indexOf(e) > -1} />
+                                <input type="checkbox" value={e} onChange={this.handleChange} checked={this.props.yearsSelect.indexOf(e) > -1} />
                                 {e} Years
                             </label>
                         )
                     })}    
-                    <input type="submit" value="submit" />
                 </form>
             </div>
         )
