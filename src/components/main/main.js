@@ -15,12 +15,12 @@ class Main extends Component {
             currentMonth : null,
             currentYear : null,
             firstDayOfMonth : null,
-            yearsSelect : [10, 25, 40, 50],
-            apiData : {}
+            yearsSelect : [10, 25, 40, 50]
         }
 
         this.handleDateChange = this.handleDateChange.bind(this)
         this.getMovies = this.getMovies.bind(this)
+        this.updateYears = this.updateYears.bind(this)
     }
 
     componentWillMount() {
@@ -35,23 +35,23 @@ class Main extends Component {
         this.getMovies()
     }
 
-    getMovies() {
+
+    getMovies(props) {
         let daysInMonth = new Date(this.state.currentYear, (this.state.currentMonth + 1), 0).getDate();
         let y = this.state.currentYear;
-        let y25 = this.state.currentYear - 25
         let m = this.state.currentMonth + 1;
-        Promise.all([
-            fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + y + '-' + m + '-' + 1 + tmdb.releaseLessThan + y + '-' + m + '-' + daysInMonth + tmdb.endString, {
-                'callback': 'test'
-            }),
-            fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + y25 + '-' + m + '-' + 1 + tmdb.releaseLessThan + y25 + '-' + m + '-' + daysInMonth + tmdb.endString, {
-                'callback': 'test'
+        Promise.all(
+            this.state.yearsSelect.map(e => {
+                return fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + (y - e) + '-' + m + '-' + 1 + tmdb.releaseLessThan + (y - e) + '-' + m + '-' + daysInMonth + tmdb.endString, {
+                    'callback': 'test'
+                })
             })
-        ])
+        )
             .then(responses => {
-                const one = responses[0].json()
-                const two = responses[1].json()
-                return [one, two]
+                return responses.map(e => {
+                const temp = e.json()
+                return temp
+                })      
             })
             .then(data => this.setState({ apiData: data }, () => console.log('api data on date change: ', this.state.apiData)))
     }
@@ -90,6 +90,20 @@ class Main extends Component {
         }, () => this.getMovies())
     }
 
+    updateYears(props){
+        let propsParsed = parseInt(props, 10)
+        let currentYearsSelected = this.state.yearsSelect;
+        if(currentYearsSelected.indexOf(propsParsed) > -1) {
+            let pos = currentYearsSelected.indexOf(propsParsed)
+            currentYearsSelected.splice(pos, 1)
+        } else {
+            currentYearsSelected.push(propsParsed)
+        }
+        this.setState({
+            yearsSelect : currentYearsSelected
+        }, () => this.getMovies())
+    }
+
 
     render() {
         return (
@@ -100,7 +114,7 @@ class Main extends Component {
                         :
                         <CalendarMobile handleDateChange={this.handleDateChange} data={this.state} />
                 }} />
-                <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} />} />
+                <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} onSubmit={this.updateYears}/>} />
                 <Route path="/account" render={() => <Account />} />
                 
             </div>
@@ -109,3 +123,7 @@ class Main extends Component {
 }
 
 export default Main
+
+// fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + y + '-' + m + '-' + 1 + tmdb.releaseLessThan + y + '-' + m + '-' + daysInMonth + tmdb.endString, {
+//     'callback': 'test'
+// })
