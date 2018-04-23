@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Menu from './components/menu/menu';
 import Main from './components/main/main';
+import {BrowserRouter} from 'react-router-dom';
 
 class App extends Component {
   constructor(props){
@@ -35,10 +36,12 @@ class App extends Component {
 
   render() {
     return (
+      <BrowserRouter>
       <div className="app">
         <Menu responsive={this.state.width}/>
         <Main responsive={this.state.width}/>
       </div>
+      </BrowserRouter>
     );
   }
 }

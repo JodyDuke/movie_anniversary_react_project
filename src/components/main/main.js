@@ -1,11 +1,12 @@
 import React,{ Component } from "react";
+import { Route } from "react-router-dom";
 import Header from '../header/header';
+import Settings from '../main/settings/settings';
+import Account from '../main/account/account';
 import CalendarDesktop from "./responsive_components/calendar_desktop";
 import CalendarMobile from "./responsive_components/calendar_mobile";
 import { config } from '../../api/api_keys';
-//import { omdb } from '../../api/omdb';
 import { tmdb } from '../../api/tmdb';
-//import { movieGlu } from '../../api/movie_glu';
 
 class Main extends Component {
     constructor(props){
@@ -14,6 +15,7 @@ class Main extends Component {
             currentMonth : null,
             currentYear : null,
             firstDayOfMonth : null,
+            yearsSelect : [10, 25, 40, 50],
             apiData : {}
         }
 
@@ -35,13 +37,23 @@ class Main extends Component {
 
     getMovies() {
         let daysInMonth = new Date(this.state.currentYear, (this.state.currentMonth + 1), 0).getDate();
-        let y = this.state.currentYear - 25;
+        let y = this.state.currentYear;
+        let y25 = this.state.currentYear - 25
         let m = this.state.currentMonth + 1;
-        fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + y + '-' + m + '-' + 1 + tmdb.releaseLessThan + y + '-' + m + '-' + daysInMonth + tmdb.endString, {
-            'callback': 'test'
-        })
-            .then(response => response.json())
-            .then(data => this.setState({ apiData: data }));
+        Promise.all([
+            fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + y + '-' + m + '-' + 1 + tmdb.releaseLessThan + y + '-' + m + '-' + daysInMonth + tmdb.endString, {
+                'callback': 'test'
+            }),
+            fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + y25 + '-' + m + '-' + 1 + tmdb.releaseLessThan + y25 + '-' + m + '-' + daysInMonth + tmdb.endString, {
+                'callback': 'test'
+            })
+        ])
+            .then(responses => {
+                const one = responses[0].json()
+                const two = responses[1].json()
+                return [one, two]
+            })
+            .then(data => this.setState({ apiData: data }, () => console.log('api data on date change: ', this.state.apiData)))
     }
 
 
@@ -83,9 +95,14 @@ class Main extends Component {
         return (
             <div className="main">
                 <Header handleDateChange={this.handleDateChange} month={this.state.currentMonth} year={this.state.currentYear}/> 
-                    {this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.currentMonth} year={this.state.currentYear} data={this.state.apiData}/> 
-                    : 
-                    <CalendarMobile handleDateChange={this.handleDateChange} data={this.state} />}
+                <Route exact path='/' render={() => {
+                        return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.currentMonth} year={this.state.currentYear} data={this.state.apiData} />
+                        :
+                        <CalendarMobile handleDateChange={this.handleDateChange} data={this.state} />
+                }} />
+                <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} />} />
+                <Route path="/account" render={() => <Account />} />
+                
             </div>
         )
     }
