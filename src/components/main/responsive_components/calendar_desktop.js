@@ -16,27 +16,27 @@ class CalendarDesktop extends Component {
         })
     }
 
-    componentWillReceiveProps(nextProps) { 
+    // componentWillReceiveProps(nextProps) { 
 
-        if(nextProps.data.results !== undefined){
+    //     if(nextProps.data.results !== undefined){
 
-            let newData = nextProps.data.results;
+    //         let newData = nextProps.data.results;
 
-            //adds a new data point to api data to match days in map_calendar function
-            let newDataMapped = newData.map((data, int) => {
-                let day = parseInt(data.release_date.slice(-2), 10)
-                data.day = day
-                return data
-            })
+    //         //adds a new data point to api data to match days in map_calendar function
+    //         let newDataMapped = newData.map((data, int) => {
+    //             let day = parseInt(data.release_date.slice(-2), 10)
+    //             data.day = day
+    //             return data
+    //         })
 
             
-            this.setState({
-                calendarArr : calendarMap(nextProps.month, nextProps.year, newDataMapped)
-            })
+    //         this.setState({
+    //             calendarArr : calendarMap(nextProps.month, nextProps.year, newDataMapped)
+    //         })
 
-        }
+    //     }
         
-    }
+    // }
 
 
 
