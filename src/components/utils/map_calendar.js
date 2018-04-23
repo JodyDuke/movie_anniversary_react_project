@@ -27,6 +27,7 @@ export const calendarMap = (month, year, data = []) => {
     //is the same as the loop counter.
     for (let e = 0; e < calendarLength; e++) {
         let titles = []
+        //inner for loop loops through api data and checks if any titles fall on the same day.
         for(let d = 0 ; d < data.length ; d++) {
             if (firstDay === e && daysInMonth > 0 && data[d].day === e) {
                 titles.push(data[d])

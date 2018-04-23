@@ -22,6 +22,7 @@ class CalendarDesktop extends Component {
 
             let newData = nextProps.data.results;
 
+            //adds a new data point to api data to match days in map_calendar function
             let newDataMapped = newData.map((data, int) => {
                 let day = parseInt(data.release_date.slice(-2), 10)
                 data.day = day
