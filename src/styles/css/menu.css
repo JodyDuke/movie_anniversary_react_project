@@ -15,6 +15,9 @@
 .logo {
   align-self: flex-start; }
 
+a {
+  color: black; }
+
 .desktop .logo {
   margin-bottom: 30px; }
 
@@ -62,7 +65,7 @@
   height: 70px;
   text-align: right; }
 
-.open-menu .link p {
+.open-menu .link a p {
   display: inline-block;
   margin: -10px 20px 3px 0px;
   line-height: 69px;

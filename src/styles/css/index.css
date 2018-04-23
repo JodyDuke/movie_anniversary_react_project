@@ -9,7 +9,6 @@
     grid-template-columns: 70px 1fr;
     grid-template-rows: 1fr; } }
 .main {
-  background-color: blue;
   flex: 1; }
 
 body {
@@ -33,6 +32,9 @@ body {
 
 .logo {
   align-self: flex-start; }
+
+a {
+  color: black; }
 
 .desktop .logo {
   margin-bottom: 30px; }
@@ -81,7 +83,7 @@ body {
   height: 70px;
   text-align: right; }
 
-.open-menu .link p {
+.open-menu .link a p {
   display: inline-block;
   margin: -10px 20px 3px 0px;
   line-height: 69px;
@@ -158,5 +160,10 @@ button {
 
 button:hover {
   cursor: pointer; }
+
+.yearSelect .checkbox {
+  display: block;
+  clear: both;
+  margin: 10px; }
 
 /*# sourceMappingURL=index.css.map */
