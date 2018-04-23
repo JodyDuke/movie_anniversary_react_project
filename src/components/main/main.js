@@ -91,16 +91,8 @@ class Main extends Component {
     }
 
     updateYears(props){
-        let propsParsed = parseInt(props, 10)
-        let currentYearsSelected = this.state.yearsSelect;
-        if(currentYearsSelected.indexOf(propsParsed) > -1) {
-            let pos = currentYearsSelected.indexOf(propsParsed)
-            currentYearsSelected.splice(pos, 1)
-        } else {
-            currentYearsSelected.push(propsParsed)
-        }
         this.setState({
-            yearsSelect : currentYearsSelected
+            yearsSelect : props
         }, () => this.getMovies())
     }
 
@@ -123,7 +115,3 @@ class Main extends Component {
 }
 
 export default Main
-
-// fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + y + '-' + m + '-' + 1 + tmdb.releaseLessThan + y + '-' + m + '-' + daysInMonth + tmdb.endString, {
-//     'callback': 'test'
-// })

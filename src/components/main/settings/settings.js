@@ -11,13 +11,30 @@ export default class Settings extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    handleSubmit(e) {
-        e.preventDefault()
 
+    componentWillMount() {
+        this.setState({
+            currentYearsChecked : this.props.yearsSelect
+        })
     }
 
     handleChange(e) {
-        this.props.onSubmit(e.target.value)
+        const val = parseInt(e.target.value, 10)
+        let currentYearState = this.state.currentYearsChecked;
+        if (currentYearState.indexOf(val) > -1) {
+            let pos = currentYearState.indexOf(val)
+            currentYearState.splice(pos, 1)
+        } else {
+            currentYearState.push(val)
+        }
+        this.setState({
+            currentYearsChecked : currentYearState
+        }, () => console.log('settings state: ', this.state.currentYearsChecked))
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        this.props.onSubmit(this.state.currentYearsChecked)
     }
 
     render() { 
@@ -25,7 +42,7 @@ export default class Settings extends Component {
             <div>
                 <div>Settings</div>
                 <br />
-                <form className="yearSelect">
+                <form className="yearSelect" onSubmit={this.handleSubmit}>
                     {this.state.yearCheckOpts.map((e, k) => {
                         return (
                             <label key={k} className="checkbox">
@@ -33,7 +50,8 @@ export default class Settings extends Component {
                                 {e} Years
                             </label>
                         )
-                    })}    
+                    })} 
+                    <input type="submit" value="submit" />   
                 </form>
             </div>
         )
