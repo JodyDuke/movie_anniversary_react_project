@@ -45,15 +45,12 @@ class Main extends Component {
                 return fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + (y - e) + '-' + m + '-' + 1 + tmdb.releaseLessThan + (y - e) + '-' + m + '-' + daysInMonth + tmdb.endString, {
                     'callback': 'test'
                 })
+                .then(response => response.json())
             })
         )
-            .then(responses => {
-                return responses.map(e => {
-                const temp = e.json()
-                return temp
-                })      
-            })
-            .then(data => this.setState({ apiData: data }, () => console.log('api data on date change: ', this.state.apiData)))
+        .then(data => this.setState({apiData : data}))
+
+
     }
 
 
@@ -102,9 +99,9 @@ class Main extends Component {
             <div className="main">
                 <Header handleDateChange={this.handleDateChange} month={this.state.currentMonth} year={this.state.currentYear}/> 
                 <Route exact path='/' render={() => {
-                        return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.currentMonth} year={this.state.currentYear} data={this.state.apiData} />
+                        return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.currentMonth} year={this.state.currentYear} data={this.state.apiData || []} />
                         :
-                        <CalendarMobile handleDateChange={this.handleDateChange} data={this.state} />
+                        <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.apiData || []} month={this.state.currentMonth} year={this.state.currentYear} />
                 }} />
                 <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} onSubmit={this.updateYears}/>} />
                 <Route path="/account" render={() => <Account />} />
