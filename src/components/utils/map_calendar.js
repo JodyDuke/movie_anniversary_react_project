@@ -27,14 +27,16 @@ export const calendarMap = (month, year, data = []) => {
     //is the same as the loop counter.
     for (let e = 0; e < calendarLength; e++) {
         let titles = []
-        //inner for loop loops through api data and checks if any titles fall on the same day.
-        for(let d = 0 ; d < data.length ; d++) {
-            if (firstDay === e && daysInMonth > 0 && data[d].day === e) {
-                titles.push(data[d])
-            }
-        }
 
         if (firstDay === e && daysInMonth > 0) {
+
+            //inner for loop loops through api data and checks if any titles fall on the same day.
+            for (let d = 0; d < data.length; d++) {
+                if (data[d].day === dayCount) {
+                    titles.push(data[d])
+                }
+            }
+
             //if firstDay matches current loop count then day count starts and is added to the node to be displayed as the date.
             result.push(<CalendarNode key={e} day={dayCount} titles={titles} class="calendar-node" />)
             firstDay += 1;
