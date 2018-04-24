@@ -18,6 +18,11 @@
   margin: 5px;
   text-align: right; }
 
+.calendar-node .titles {
+  font-size: 80%;
+  margin: 0;
+  padding: 3px; }
+
 @media (max-width: 768px) {
   .calendar {
     display: flex;
