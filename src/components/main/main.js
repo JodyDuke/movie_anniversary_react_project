@@ -28,12 +28,8 @@ class Main extends Component {
         this.setState({
             currentMonth: parseInt(todaysDate.getMonth().toString(), 10),
             currentYear: todaysDate.getFullYear()
-        })
+        }, () => this.getMovies())
     } 
-
-    componentDidMount() {
-        this.getMovies()
-    }
 
 
     getMovies(props) {
@@ -101,7 +97,7 @@ class Main extends Component {
                 <Route exact path='/' render={() => {
                         return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.currentMonth} year={this.state.currentYear} data={this.state.apiData || []} />
                         :
-                        <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.apiData || []} month={this.state.currentMonth} year={this.state.currentYear} />
+                        <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.apiData} month={this.state.currentMonth} year={this.state.currentYear} />
                 }} />
                 <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} onSubmit={this.updateYears}/>} />
                 <Route path="/account" render={() => <Account />} />
