@@ -3,7 +3,7 @@ import { numToMonth } from '../utils/num_to_month';
 
 const TitleMap = (props) => {
     const titles = props.data
-    const listTitles = titles.map((e, k) => <p key={k}>{e.title}</p>)
+    const listTitles = titles.map((e, k) => <p key={k} className="titles">{e.birthday} - {e.title}</p>)
     return <div>{listTitles}</div>
 }
 
