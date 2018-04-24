@@ -15,7 +15,7 @@ class CalendarMobile extends Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
-        const calendarArray = calendarMap(this.props.data.currentMonth, this.props.data.currentYear);
+        const calendarArray = calendarMap(this.props.month, this.props.year);
         this.setState({
             calendarArr: calendarArray
         })
@@ -28,9 +28,9 @@ class CalendarMobile extends Component {
     handleScroll = (ev) => {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
             this.props.handleDateChange('monthUp')
-            const calendarUpdate = calendarMap(this.props.data.currentMonth, this.props.data.currentYear);
+            const calendarUpdate = calendarMap(this.props.month, this.props.year);
             let currentCalendar = this.state.calendarArr
-            currentCalendar.push(<CalendarNode key={this.state.mapKey} class="mobile-month-year" month={this.props.data.currentMonth} year={this.props.data.currentYear}/>)
+            currentCalendar.push(<CalendarNode key={this.state.mapKey} class="mobile-month-year" month={this.props.month} year={this.props.year}/>)
             currentCalendar.push(calendarUpdate)
             this.setState({
                 calendarArr : currentCalendar,
@@ -40,7 +40,7 @@ class CalendarMobile extends Component {
     };
 
     render() {
-        console.log(this.props.data.apiData)
+        console.log(this.props.data)
         return (
             <div className="calendar">
                 {this.state.calendarArr}
