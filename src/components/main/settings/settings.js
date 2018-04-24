@@ -29,7 +29,7 @@ export default class Settings extends Component {
         }
         this.setState({
             currentYearsChecked : currentYearState
-        }, () => console.log('settings state: ', this.state.currentYearsChecked))
+        })
     }
 
     handleSubmit(e) {
@@ -51,7 +51,7 @@ export default class Settings extends Component {
                             </label>
                         )
                     })} 
-                    <input type="submit" value="submit" />   
+                    <input type="submit" value="Save" />
                 </form>
             </div>
         )
