@@ -10,18 +10,27 @@
 .calendar .days {
   text-align: right; }
 
+.background-images {
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
 .calendar-node {
-  background-color: orange;
-  min-height: 100px; }
+  background-color: rgba(0, 0, 0, 0.5);
+  min-height: 100px;
+  height: 100%;
+  overflow: auto; }
 
 .calendar-node h4 {
   margin: 5px;
-  text-align: right; }
+  text-align: right;
+  color: white; }
 
 .calendar-node .titles {
   font-size: 80%;
   margin: 0;
-  padding: 3px; }
+  padding: 3px;
+  color: white; }
 
 @media (max-width: 768px) {
   .calendar {
@@ -30,7 +39,8 @@
 
   .calendar-node {
     margin: 2px 0px;
-    overflow: auto; }
+    overflow: auto;
+    background-repeat: no-repeat; }
 
   .mobile-month-year {
     text-align: right;
