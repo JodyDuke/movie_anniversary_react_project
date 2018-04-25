@@ -35,8 +35,10 @@
     }
     
     .calendar-node {
-        margin: 1px 0px;
+        margin: 2px 0px;
+        overflow: auto;
     }
+    
 
     .mobile-month-year {
         text-align: right;
