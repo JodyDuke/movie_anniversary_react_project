@@ -12,7 +12,7 @@ export default class CalendarNode extends Component {
         return (
             <div className={this.props.class}>
                 <h4>{this.props.day}</h4>
-                {this.props.titles ? <TitleMap data={this.props.titles} /> : <div></div>}
+                {this.props.titles ? <TitleMap data={this.props.titles} /> : null}
                 <h3>{numToMonth(this.props.month)}</h3>
                 <h3>{this.props.year}</h3>
             </div>
