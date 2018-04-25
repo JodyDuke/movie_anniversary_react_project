@@ -7,15 +7,18 @@ import CalendarDesktop from "./responsive_components/calendar_desktop";
 import CalendarMobile from "./responsive_components/calendar_mobile";
 import { config } from '../../api/api_keys';
 import { tmdb } from '../../api/tmdb';
+import { calendarMap } from '../utils/map_calendar'
+import { addBirthday } from '../utils/add_birthday_map'
 
 class Main extends Component {
     constructor(props){
         super(props)
         this.state = {
-            currentMonth : null,
-            currentYear : null,
+            month : null,
+            year : null,
             firstDayOfMonth : null,
-            yearsSelect : [10, 25, 40, 50]
+            yearsSelect : [10, 20, 25, 40, 50, 100],
+            totalCalendarSession : []
         }
 
         this.handleDateChange = this.handleDateChange.bind(this)
@@ -26,16 +29,16 @@ class Main extends Component {
     componentWillMount() {
         const todaysDate = new Date();
         this.setState({
-            currentMonth: parseInt(todaysDate.getMonth().toString(), 10),
-            currentYear: todaysDate.getFullYear()
+            month: parseInt(todaysDate.getMonth().toString(), 10),
+            year: todaysDate.getFullYear()
         }, () => this.getMovies())
     } 
 
 
     getMovies(props) {
-        let daysInMonth = new Date(this.state.currentYear, (this.state.currentMonth + 1), 0).getDate();
-        let y = this.state.currentYear;
-        let m = this.state.currentMonth + 1;
+        let daysInMonth = new Date(this.state.year, (this.state.month + 1), 0).getDate();
+        let y = this.state.year;
+        let m = this.state.month + 1;
         Promise.all(
             this.state.yearsSelect.map(e => {
                 return fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + (y - e) + '-' + m + '-' + 1 + tmdb.releaseLessThan + (y - e) + '-' + m + '-' + daysInMonth + tmdb.endString, {
@@ -44,17 +47,27 @@ class Main extends Component {
                 .then(response => response.json())
             })
         )
-        .then(data => this.setState({apiData : data}))
-
-
+        .then(data => this.setState({data : data}))
+        .then(() => {
+            const addToArr = calendarMap(this.state.month, this.state.year, addBirthday(this.state))
+            let totalCalendarArr = this.state.totalCalendarSession
+            totalCalendarArr.push({
+                month : this.state.month,
+                year : this.state.year,
+                titles : addToArr
+            })
+            this.setState({
+                totalCalendarSession : totalCalendarArr
+            })
+        })
     }
 
 
     handleDateChange = (data) => {
-        let newMonth = this.state.currentMonth
-        let newYear = this.state.currentYear
+        let newMonth = this.state.month
+        let newYear = this.state.year
         if(data === 'monthDown') {
-            if (this.state.currentMonth === 0) {
+            if (this.state.month === 0) {
                 newMonth = 11
                 newYear--;
             }
@@ -63,7 +76,7 @@ class Main extends Component {
             }
         }           
         if(data === 'monthUp') {
-            if (this.state.currentMonth === 11) {
+            if (this.state.month === 11) {
                 newMonth = 0
                 newYear++
             }
@@ -78,8 +91,8 @@ class Main extends Component {
             newYear --
         }     
         this.setState({
-            currentMonth : newMonth,
-            currentYear : newYear
+            month : newMonth,
+            year : newYear
         }, () => this.getMovies())
     }
 
@@ -93,11 +106,11 @@ class Main extends Component {
     render() {
         return (
             <div className="main">
-                <Header handleDateChange={this.handleDateChange} month={this.state.currentMonth} year={this.state.currentYear}/> 
+                <Header handleDateChange={this.handleDateChange} month={this.state.month} year={this.state.year}/> 
                 <Route exact path='/' render={() => {
-                        return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.currentMonth} year={this.state.currentYear} data={this.state.apiData || []} />
+                        return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.month} year={this.state.year} data={this.state.data || []} />
                         :
-                        <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.apiData} month={this.state.currentMonth} year={this.state.currentYear} />
+                        <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.totalCalendarSession} month={this.state.month} year={this.state.year} />
                 }} />
                 <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} onSubmit={this.updateYears}/>} />
                 <Route path="/account" render={() => <Account />} />
