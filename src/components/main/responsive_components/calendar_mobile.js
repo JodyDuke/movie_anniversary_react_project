@@ -1,5 +1,6 @@
 import React, { Component } from "react";
- import CalendarNode from "../calendar_node";
+import CalendarNode from "../calendar_node";
+import CalendarNodeHeader from '../calendar_node_header'
 
 class CalendarMobile extends Component {
     constructor(props){
@@ -30,7 +31,7 @@ class CalendarMobile extends Component {
                 {this.props.data.map((e, k) => {
                     return (
                         <div key={k}>
-                            <CalendarNode class='mobile-month-year' month={e.month} year={e.year} />
+                            <CalendarNodeHeader class='mobile-month-year' month={e.month} year={e.year} />
                             {e.titles}
                         </div>
                     )
