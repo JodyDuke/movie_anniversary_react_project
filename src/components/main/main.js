@@ -17,7 +17,7 @@ class Main extends Component {
             month : null,
             year : null,
             firstDayOfMonth : null,
-            yearsSelect : [10, 20, 25, 40, 50, 100],
+            yearsSelect : [5, 10, 20, 25, 30, 40, 50, 60, 70, 80, 100],
             totalCalendarSession : []
         }
 
@@ -51,14 +51,46 @@ class Main extends Component {
         .then(() => {
             const addToArr = calendarMap(this.state.month, this.state.year, addBirthday(this.state))
             let totalCalendarArr = this.state.totalCalendarSession
+
+            for(let i = 0 ; i < totalCalendarArr.length ; i++){
+                if(totalCalendarArr[i].month === this.state.month && totalCalendarArr[i].year === this.state.year) {
+                    return this.setState({
+                        totalCalendarSession : totalCalendarArr
+                    })
+                }
+            }
+            if(totalCalendarArr.length > 1){
+                if(totalCalendarArr[0].month > this.state.month && totalCalendarArr[0].year > this.state.year){
+                    totalCalendarArr.push({
+                        month: this.state.month,
+                        year: this.state.year,
+                        titles: addToArr
+                    })
+                    return this.setState({
+                        totalCalendarSession: totalCalendarArr
+                    })
+                }
+                else {
+                    totalCalendarArr.unshift({
+                        month: this.state.month,
+                        year: this.state.year,
+                        titles: addToArr
+                    })
+                    return this.setState({
+                        totalCalendarSession: totalCalendarArr
+                    })
+                }
+            }
+
             totalCalendarArr.push({
-                month : this.state.month,
-                year : this.state.year,
-                titles : addToArr
+                month: this.state.month,
+                year: this.state.year,
+                titles: addToArr
             })
-            this.setState({
-                totalCalendarSession : totalCalendarArr
+            return this.setState({
+                totalCalendarSession: totalCalendarArr
             })
+            
         })
     }
 
@@ -108,7 +140,7 @@ class Main extends Component {
             <div className="main">
                 <Header handleDateChange={this.handleDateChange} month={this.state.month} year={this.state.year}/> 
                 <Route exact path='/' render={() => {
-                        return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.month} year={this.state.year} data={this.state.data || []} />
+                        return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.month} year={this.state.year} data={this.state.totalCalendarSession} />
                         :
                         <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.totalCalendarSession} month={this.state.month} year={this.state.year} />
                 }} />
