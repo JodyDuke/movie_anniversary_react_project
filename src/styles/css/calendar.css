@@ -11,13 +11,23 @@
   text-align: right; }
 
 .background-images {
-  background-position: center;
+  background-position: center 50%;
   background-size: 100%;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  transition: background-size 0.2s linear;
+  box-shadow: 0 0 0 #000;
+  transform: translate3d(0, 0, 0); }
+
+.background-images:hover {
+  background-size: 110%;
+  transition: background-size 1s linear;
+  box-shadow: 0 0 0 #000;
+  transform: translate3d(0, 0, 0); }
 
 .calendar-node {
   background-color: rgba(0, 0, 0, 0.5);
   min-height: 100px;
+  min-width: 120px;
   height: 100%;
   overflow: auto; }
 
@@ -41,6 +51,9 @@
     margin: 2px 0px;
     overflow: auto;
     background-repeat: no-repeat; }
+
+  .background-images {
+    background-position: 30% 15%; }
 
   .mobile-month-year {
     text-align: right;

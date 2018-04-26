@@ -16,6 +16,7 @@
   align-self: flex-start; }
 
 a {
+  text-decoration: none;
   color: black; }
 
 .desktop .logo {
