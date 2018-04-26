@@ -61,7 +61,7 @@ class Main extends Component {
             }
             if(totalCalendarArr.length > 1){
                 if(totalCalendarArr[0].month > this.state.month && totalCalendarArr[0].year > this.state.year){
-                    totalCalendarArr.push({
+                    totalCalendarArr.unshift({
                         month: this.state.month,
                         year: this.state.year,
                         titles: addToArr
@@ -71,7 +71,7 @@ class Main extends Component {
                     })
                 }
                 else {
-                    totalCalendarArr.unshift({
+                    totalCalendarArr.push({
                         month: this.state.month,
                         year: this.state.year,
                         titles: addToArr
