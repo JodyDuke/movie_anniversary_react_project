@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default class Settings extends Component {
+class Settings extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -35,6 +36,7 @@ export default class Settings extends Component {
     handleSubmit(e) {
         e.preventDefault()
         this.props.onSubmit(this.state.currentYearsChecked)
+        this.props.history.push('/')
     }
 
     render() { 
@@ -51,9 +53,11 @@ export default class Settings extends Component {
                             </label>
                         )
                     })} 
-                    <input type="submit" value="Save" />
+                    <input type="submit" value="Save and close" />
                 </form>
             </div>
         )
     }
 }
+
+export default withRouter(Settings)
