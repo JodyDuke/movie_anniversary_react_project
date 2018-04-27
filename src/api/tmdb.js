@@ -1,6 +1,8 @@
 export const tmdb = {
     url: 'https://api.themoviedb.org/3/',
     discover: 'discover/movie?',
+    movie: 'movie/',
+    videos: '/videos?',
     startString: '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=',
     releaseLessThan: '&release_date.lte=',
     endString: '&vote_average.gte=5&without_genres=10402%2C99%2C10770&with_original_language=en&region=GB&with_release_type=2|3',
