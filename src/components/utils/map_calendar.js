@@ -38,7 +38,8 @@ export const calendarMap = (month, year, data = []) => {
             }
 
             //if firstDay matches current loop count then day count starts and is added to the node to be displayed as the date.
-            result.push(<CalendarNode key={e} day={dayCount} year={year} month={month} titles={titles} class="calendar-node" />)
+            result.push(<CalendarNode key={e} day={dayCount} year={year} month={month} titles={titles} id= 
+                {year + '/' + month + '/' + dayCount} class="calendar-node" />)
             firstDay += 1;
             daysInMonth -= 1;
             dayCount += 1;
