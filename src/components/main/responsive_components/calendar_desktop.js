@@ -1,64 +1,63 @@
 import React,{ Component } from "react";
-import { Route } from "react-router-dom";
-import {calendarMap} from '../../utils/map_calendar';
+import Header from '../../header/header';
 import { days } from '../../utils/days';
-import { addBirthday } from '../../utils/add_birthday_map';
+
 
 
 class CalendarDesktop extends Component {
     constructor(props){
         super(props);
         this.state = {
-            calendarArr : []
+            currentCalendarView : undefined,
+        }
+
+        this.handleClickFromChild = this.handleClickFromChild.bind(this)
+    }
+
+    componentDidMount(){
+        if (this.props.data.length > 0) {
+            let arrPosition = 0
+            for (let i = 0; i < this.props.data.length; i++) {
+                if (this.props.month === this.props.data[i].month && this.props.year === this.props.data[i].year) {
+                    arrPosition = i
+                }
+            }
+            this.setState({
+                currentCalendarView: this.props.data[arrPosition].titles
+            })
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.data.length > 0) {
+            let arrPosition = 0
+            for(let i = 0 ; i < nextProps.data.length ; i++) {
+                if(nextProps.month === nextProps.data[i].month && nextProps.year === nextProps.data[i].year) {
+                    arrPosition = i
+                }
+            }
+            this.setState({
+                currentCalendarView: nextProps.data[arrPosition].titles
+            })
+        }
+    }
 
-    // componentDidMount() {
-    //     this.setState({
-    //         calendarArr: calendarMap(this.props.month, this.props.year),
-    //     })
-    // }
-
-    // componentWillReceiveProps(nextProps) { 
-    //     //if data is received from api call then block will fire
-    //    if(nextProps.data[0] !== undefined){         
-    //         this.setState({
-    //             calendarArr: calendarMap(nextProps.month, nextProps.year, addBirthday(nextProps))
-    //         })
-    //    }       
-    // }
-
-    // componentWillReceiveProps(nextProps) {
-    //     if(nextProps.data !== undefined && nextProps.data.length > 0){
-    //         this.setState({
-    //             calendarArr: nextProps.data[0].titles
-    //         })     
-    //     }
-    // }
-
-
+    handleClickFromChild(data) {
+        this.props.handleDateChange(data);
+    }
 
     render() {  
-        console.log(this.props.data)
-        const dataRender = () => {
-            for(let i = 0; i < this.props.data.length ; i++) {
-                if(this.props.year === this.props.data[i].year && this.props.month === this.props.data[i].month){
-                    return this.props.data[i].titles
-                }
-                else return 'error'
-            }
-        }
-
         const daysMap = days.map((item, i) => <div className="days" key={i}>{item}</div>)
         return (
-            //<Route path="/movies" 
-            <div className="calendar">
-            {daysMap} 
-            {this.props.data !== undefined && this.props.data.length > 0 ? dataRender() : ''} 
+            <div>
+                <Header handleClickFromChild={this.handleClickFromChild} month={this.props.month} year={this.props.year} />
+                <div className="calendar">
+                    {daysMap}
+                    {this.state.currentCalendarView ? this.state.currentCalendarView : '...loading'}
+                </div>
             </div>
         )
     }
 }
-
+    
 export default CalendarDesktop
