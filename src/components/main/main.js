@@ -146,7 +146,7 @@ class Main extends Component {
                             :
                             <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.totalCalendarSession} month={this.state.month} year={this.state.year} />
                     }} />
-                    <Route path='/:id' render={() => <Modal data={this.state.totalCalendarSession}/>} />
+                    <Route path='/movies/:id' render={() => <Modal data={this.state.totalCalendarSession}/>} />
                     <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} onSubmit={this.updateYears}/>} />
                     <Route path="/account" render={() => <Account />} />
             </div>
