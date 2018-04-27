@@ -14,10 +14,10 @@
     height: 100%;
 
         .title-info {
-            width: 80%;
+            width: 90%;
             min-width: 400px;
             min-height: 400px;
-            height: 80%;
+            height: 90%;
             background-color: rgba(0, 0, 0, 0.8);
             border-radius: 10px;
 
@@ -35,6 +35,12 @@
                     }
                 }
 
+            }
+
+            .video iframe {
+                width: 500px;
+                height: 300px;
+                border: none;
             }
 
         }
