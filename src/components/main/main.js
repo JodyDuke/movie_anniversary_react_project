@@ -42,7 +42,7 @@ class Main extends Component {
         let m = this.state.month + 1;
         Promise.all(
             this.state.yearsSelect.map(e => {
-                return fetch(tmdb.url + tmdb.discover + config.TMBD_KEY + tmdb.startString + (y - e) + '-' + m + '-' + 1 + tmdb.releaseLessThan + (y - e) + '-' + m + '-' + daysInMonth + tmdb.endString, {
+                return fetch(tmdb.url + tmdb.discover + config.TMDB_KEY + tmdb.startString + (y - e) + '-' + m + '-' + 1 + tmdb.releaseLessThan + (y - e) + '-' + m + '-' + daysInMonth + tmdb.endString, {
                     'callback': 'test'
                 })
                 .then(response => response.json())
