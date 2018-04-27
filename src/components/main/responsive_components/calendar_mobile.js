@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import CalendarNode from "../calendar_node";
-import CalendarNodeHeader from '../calendar_node_header'
+import CalendarNodeHeader from '../calendar_node_header';
 
 class CalendarMobile extends Component {
     constructor(props){
