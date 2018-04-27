@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
 import { Route } from "react-router-dom";
-import Header from '../header/header';
+import Modal from './modal'
 import Settings from '../main/settings/settings';
 import Account from '../main/account/account';
 import CalendarDesktop from "./responsive_components/calendar_desktop";
@@ -25,6 +25,7 @@ class Main extends Component {
         this.getMovies = this.getMovies.bind(this)
         this.updateYears = this.updateYears.bind(this)
     }
+
 
     componentWillMount() {
         const todaysDate = new Date();
@@ -130,7 +131,8 @@ class Main extends Component {
 
     updateYears(props){
         this.setState({
-            yearsSelect : props
+            yearsSelect : props,
+            totalCalendarSession : []
         }, () => this.getMovies())
     }
 
@@ -138,15 +140,15 @@ class Main extends Component {
     render() {
         return (
             <div className="main">
-                <Header handleDateChange={this.handleDateChange} month={this.state.month} year={this.state.year}/> 
-                <Route exact path='/' render={() => {
-                        return this.props.responsive === 'desktop' ? <CalendarDesktop month={this.state.month} year={this.state.year} data={this.state.totalCalendarSession} />
-                        :
-                        <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.totalCalendarSession} month={this.state.month} year={this.state.year} />
-                }} />
-                <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} onSubmit={this.updateYears}/>} />
-                <Route path="/account" render={() => <Account />} />
-                
+                    <Route exact path='/' render={() => {
+                            return this.props.responsive === 'desktop' ? 
+                            <CalendarDesktop month={this.state.month} year={this.state.year} data={this.state.totalCalendarSession} handleDateChange={this.handleDateChange} />
+                            :
+                            <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.totalCalendarSession} month={this.state.month} year={this.state.year} />
+                    }} />
+                    <Route path='/:id' render={() => <Modal data={this.state.totalCalendarSession}/>} />
+                    <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} onSubmit={this.updateYears}/>} />
+                    <Route path="/account" render={() => <Account />} />
             </div>
         )
     }

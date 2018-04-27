@@ -11,7 +11,7 @@ class Header extends Component {
     }
 
     handleClick = (data) => {
-        this.props.handleDateChange(data)
+        this.props.handleClickFromChild(data)
     }
 
     render() {
