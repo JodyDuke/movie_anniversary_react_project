@@ -1,5 +1,4 @@
 import React,{ Component } from "react";
-import { numToMonth } from '../utils/num_to_month';
 import { tmdb } from '../../api/tmdb';
 import { Link } from 'react-router-dom';
 
@@ -33,8 +32,8 @@ export default class CalendarNode extends Component {
             
             <div className="background-images" style={{backgroundImage: `url(${poster})`}}>
                 <Link to={{
-                    pathname : '/' + this.props.year + '/' + this.props.month + '/' + this.props.day,
-                    modal : true
+                    pathname : this.props.id,
+                    state: this.props
                     }}>
 
                 <div className={this.props.class}>
