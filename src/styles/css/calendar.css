@@ -17,7 +17,8 @@
   background-repeat: no-repeat;
   transition: background-size 0.2s linear;
   box-shadow: 0 0 0 #000;
-  transform: translate3d(0, 0, 0); }
+  transform: translate3d(0, 0, 0);
+  border-radius: 5px; }
 
 .background-images:hover {
   background-size: 110%;
@@ -30,7 +31,8 @@
   min-height: 100px;
   min-width: 120px;
   height: 100%;
-  overflow: auto; }
+  overflow: auto;
+  border-radius: 5px; }
 
 .calendar-node h4 {
   margin: 5px;
