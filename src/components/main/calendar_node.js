@@ -32,7 +32,7 @@ export default class CalendarNode extends Component {
             
             <div className="background-images" style={{backgroundImage: `url(${poster})`}}>
                 <Link to={{
-                    pathname : 'movies/' + this.props.id,
+                    pathname : '/movies/' + this.props.id,
                     state: this.props
                     }}>
 
