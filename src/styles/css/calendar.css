@@ -48,7 +48,8 @@
 @media (max-width: 768px) {
   .calendar {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    height: 100%; }
 
   .calendar-node {
     margin: 2px 0px;
