@@ -1,14 +1,12 @@
 import React,{ Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { tmdb } from '../../../api/tmdb';
-import { config } from '../../../api/api_keys'
+import { regionSelectData } from '../../utils/region_data';
 
 class Settings extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            yearCheckOpts : [5, 10, 20, 25, 30, 40, 50, 60, 80, 100],
-            regionSelectData: []
+            yearCheckOpts : [5, 10, 20, 25, 30, 40, 50, 60, 80, 100]
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -18,17 +16,10 @@ class Settings extends Component {
 
 
     componentWillMount() {
-        fetch(tmdb.regionSelect + config.TMDB_KEY, {
-            'callback': 'test'
-        })
-            .then(response => response.json())
-            .then(data => {
                 this.setState({
                     currentYearsChecked: this.props.yearsSelect,
                     currentRegionChecked: this.props.currentRegion,
-                    regionSelectData: data
                 })
-            })
     }
 
     handleYearChange(e) {
@@ -78,7 +69,7 @@ class Settings extends Component {
                 </form>
                 <form className='regionSelect'>
                     <select name="region" value={this.state.currentRegionChecked} onChange={this.handleRegionChange}>
-                        {this.state.regionSelectData.map((e, k) => {
+                        {regionSelectData.map((e, k) => {
                             return <option key={k} value={e.iso_3166_1}>{e.english_name}</option>
                         })}
                     </select>
