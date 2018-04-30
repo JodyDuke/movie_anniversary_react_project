@@ -17,13 +17,14 @@ class Main extends Component {
             month : null,
             year : null,
             firstDayOfMonth : null,
+            countrySelect: 'GB',
             yearsSelect : [5, 10, 20, 25, 30, 40, 50, 60, 70, 80, 100],
             totalCalendarSession : []
         }
 
         this.handleDateChange = this.handleDateChange.bind(this)
         this.getMovies = this.getMovies.bind(this)
-        this.updateYears = this.updateYears.bind(this)
+        this.updateSettings = this.updateSettings.bind(this)
     }
 
 
@@ -42,7 +43,7 @@ class Main extends Component {
         let m = this.state.month + 1;
         Promise.all(
             this.state.yearsSelect.map(e => {
-                return fetch(tmdb.url + tmdb.discover + config.TMDB_KEY + tmdb.startString + (y - e) + '-' + m + '-' + 1 + tmdb.releaseLessThan + (y - e) + '-' + m + '-' + daysInMonth + tmdb.endString, {
+                return fetch(tmdb.url + tmdb.discover + config.TMDB_KEY + tmdb.startString + (y - e) + '-' + m + '-' + 1 + tmdb.releaseLessThan + (y - e) + '-' + m + '-' + daysInMonth + tmdb.region + this.state.countrySelect + tmdb.endString, {
                     'callback': 'test'
                 })
                 .then(response => response.json())
@@ -129,9 +130,10 @@ class Main extends Component {
         }, () => this.getMovies())
     }
 
-    updateYears(props){
+    updateSettings(props){
         this.setState({
-            yearsSelect : props,
+            yearsSelect : props.years,
+            countrySelect: props.country,
             totalCalendarSession : []
         }, () => this.getMovies())
     }
@@ -147,7 +149,7 @@ class Main extends Component {
                             <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.totalCalendarSession} month={this.state.month} year={this.state.year} />
                     }} />
                     <Route path='/movies/:id' render={() => <Modal data={this.state.totalCalendarSession}/>} />
-                    <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} onSubmit={this.updateYears}/>} />
+                    <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} currentRegion={this.state.countrySelect} onSubmit={this.updateSettings}/>} />
                     <Route path="/account" render={() => <Account />} />
             </div>
         )

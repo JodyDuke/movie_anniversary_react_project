@@ -5,7 +5,9 @@ export const tmdb = {
     videos: '/videos?',
     startString: '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&release_date.gte=',
     releaseLessThan: '&release_date.lte=',
-    endString: '&vote_average.gte=5&without_genres=10770&with_original_language=en&region=GB&with_release_type=2|3',
+    regionSelect: 'https://api.themoviedb.org/3/configuration/countries?', //+ api_key
+    region: '&region=',
+    endString: '&vote_average.gte=5&without_genres=10770&with_original_language=en&with_release_type=2|3',
     images : {
         base_url: "http://image.tmdb.org/t/p/",
         secure_base_url: "https://image.tmdb.org/t/p/",
