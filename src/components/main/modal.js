@@ -99,6 +99,13 @@ class Modal extends Component {
     }
 
     render(){
+        //console.log(this.state.currentTitleCredits)
+        let director;
+        if(this.state.currentTitleCredits !== undefined){
+        const temp = this.state.currentTitleCredits.crew.find(e => e.job === 'Director')
+        director = temp.name
+        }
+        
         let posterImage = tmdb.images.secure_base_url + tmdb.images.backdrop_sizes[2] + this.state.currentTitle.backdrop_path
         let currentTitleImage = tmdb.images.secure_base_url + tmdb.images.poster_sizes[1] + this.state.currentTitle.poster_path
         return(
@@ -117,20 +124,9 @@ class Modal extends Component {
                             <h3>{this.state.currentTitle.birthday}<sup>th</sup> Anniversary</h3>
                             <p>{this.state.currentTitle.overview}</p>
                             {this.state.currentTitleCredits !== undefined ?
-                                <div className="cast">
-                                    <h3>Cast</h3>
-                                    {this.state.currentTitleCredits.cast.map((e, k) => {
-                                        let currentProfileImage = profile
-                                        if(e.profile_path !== null){
-                                            currentProfileImage = tmdb.images.secure_base_url + tmdb.images.poster_sizes[1] + e.profile_path  
-                                        }                              
-                                        return <div key={k} className="cast-node">
-                                            <img src={currentProfileImage} alt={e.name} />
-                                            <p>{e.name}</p>
-                                            <p className="character">{e.character}</p>
-                                        </div>
-                                    })}
-                                </div>
+                                    <div className="cast">
+                                        <CastComponent data={this.state.currentTitleCredits.cast} />
+                                    </div>
                                 :
                                 null
                             }
@@ -142,22 +138,26 @@ class Modal extends Component {
                                 <a target="_blank" href={'https://www.youtube.com/watch?v=' + this.state.currentTitleVideoId}>Trailer </a> 
                                 <LinkSVG />
                             </div>
+                            <div className="director">
+                                <p>Director<br /><span>{director}</span></p>
+                            </div>
                             {this.state.currentTitleMiscInfo !== undefined ? 
                                 <div className="budget">
-                                    <p>Budget<br />$ {numberWithCommas(this.state.currentTitleMiscInfo.budget)}</p>
-                                    <p>Revenue<br/>$ {numberWithCommas(this.state.currentTitleMiscInfo.revenue)}</p>
+                                    {this.state.currentTitleMiscInfo.budget > 0 ?
+                                        <p>Budget<br /><span>$ {numberWithCommas(this.state.currentTitleMiscInfo.budget)}</span></p>
+                                    :
+                                    null
+                                    }
+                                    {this.state.currentTitleMiscInfo.revenue > 0 ?
+                                        <p>Revenue<br /><span>$ {numberWithCommas(this.state.currentTitleMiscInfo.revenue)}</span></p>
+                                    :
+                                    null
+                                    }
                                 </div>
                                 :
                                 ''
                             }
-
                         </div>
-                        {/* <div className="video">
-                            <iframe title="trailer"
-                                src={'https://www.youtube.com/embed/' + this.state.videoId}>
-                            </iframe>
-                        </div> */}
-
                     </div>
                 </div>
             </div>
@@ -184,6 +184,52 @@ class OtherTitles extends Component {
                     else return null
                 })}
             </div>
+        )
+    }
+}
+
+class CastComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(prevState){
+        this.setState(prevState => ({
+            open: !prevState.open
+        }))
+    }
+
+    render() {
+        let currentData;
+        let header;
+        if(this.state.open){
+            currentData = this.props.data.slice(0, 12)
+            header = <h3 onClick={this.handleChange}>Cast <span>See less &uarr;</span></h3>  
+        }
+        else {
+            currentData = this.props.data.slice(0, 4)
+            header = <h3 onClick={this.handleChange}>Cast <span>See more &rarr;</span></h3>  
+        }
+
+        return ( 
+            <div>
+                {header}   
+                {currentData.map((e, k) => {
+                    let currentProfileImage = profile
+                    if (e.profile_path !== null) {
+                        currentProfileImage = tmdb.images.secure_base_url + tmdb.images.poster_sizes[1] + e.profile_path
+                    }
+                    return <div key={k} className="cast-node">
+                        <img src={currentProfileImage} alt={e.name} />
+                        <p>{e.name}</p>
+                        <p className="character">{e.character}</p>
+                    </div>
+                })}
+            </div>  
         )
     }
 }
