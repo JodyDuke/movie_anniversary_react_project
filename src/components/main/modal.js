@@ -144,12 +144,12 @@ class Modal extends Component {
                             {this.state.currentTitleMiscInfo !== undefined ? 
                                 <div className="budget">
                                     {this.state.currentTitleMiscInfo.budget > 0 ?
-                                        <p>Budget<br /><span>$ {numberWithCommas(this.state.currentTitleMiscInfo.budget)}</span></p>
+                                        <p>Budget<br /><span>${numberWithCommas(this.state.currentTitleMiscInfo.budget)}</span></p>
                                     :
                                     null
                                     }
                                     {this.state.currentTitleMiscInfo.revenue > 0 ?
-                                        <p>Revenue<br /><span>$ {numberWithCommas(this.state.currentTitleMiscInfo.revenue)}</span></p>
+                                        <p>Revenue<br /><span>${numberWithCommas(this.state.currentTitleMiscInfo.revenue)}</span></p>
                                     :
                                     null
                                     }
