@@ -3,7 +3,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  background-color: green;
   height: 60px;
   font-size: 120%; }
   .header button {

@@ -20,8 +20,10 @@ body {
   font-family: sans-serif; }
 
 .menu {
-  background-color: pink;
+  background-color: #1980c1;
   height: 100%; }
+  .menu svg {
+    fill: #092b40; }
 
 .menu .logo {
   margin: 5px 11px;
@@ -38,7 +40,7 @@ body {
 
 a {
   text-decoration: none;
-  color: black; }
+  color: #092b40; }
 
 .desktop .logo {
   margin-bottom: 30px; }
@@ -75,7 +77,7 @@ a {
 .open-menu {
   width: 100vw;
   height: 141px;
-  background-color: pink;
+  background-color: #1980c1;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
@@ -105,7 +107,6 @@ a {
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  background-color: green;
   height: 60px;
   font-size: 120%; }
   .header button {
@@ -125,8 +126,7 @@ a {
   grid-gap: 2px;
   padding: 10px;
   height: calc(100vh - 80px);
-  grid-auto-rows: 1fr;
-  background-color: red; }
+  grid-auto-rows: 1fr; }
 
 .calendar .days {
   text-align: right; }
@@ -153,6 +153,36 @@ a {
   height: 100%;
   overflow: auto;
   border-radius: 5px; }
+  .calendar-node .title-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding-right: 10px; }
+    .calendar-node .title-info .birthday {
+      color: white;
+      font-weight: bold;
+      font-size: 230%;
+      margin: 0;
+      padding: 0; }
+      .calendar-node .title-info .birthday span {
+        font-size: 30%;
+        margin-left: -7px; }
+    .calendar-node .title-info .title {
+      color: white;
+      margin: 0;
+      font-size: 90%;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 5px;
+      border-radius: 5px; }
+  .calendar-node .more-movies {
+    position: absolute;
+    color: white;
+    font-size: 80%;
+    padding: 0 5px 2px 0;
+    margin: 0;
+    bottom: 0;
+    right: 0; }
 
 .calendar-node h4 {
   margin: 5px;
@@ -229,6 +259,12 @@ button:hover {
       background-color: rgba(0, 0, 0, 0.8);
       border-radius: 5px;
       color: white; }
+      .modal-body .modal .info-single-title .current-title-info {
+        margin-left: 10px; }
+      .modal-body .modal .info-single-title .cast .cast-node {
+        max-width: 20%; }
+        .modal-body .modal .info-single-title .cast .cast-node img {
+          width: 100%; }
     .modal-body .modal .info {
       display: grid;
       grid-template-columns: 20% 60% 20%;
@@ -257,10 +293,14 @@ button:hover {
         margin: 20px 10px 0px 0px; }
         .modal-body .modal .current-title-info .cast h3 {
           margin-bottom: 0px; }
+          .modal-body .modal .current-title-info .cast h3 span {
+            margin-left: 5px;
+            font-size: 70%;
+            cursor: pointer; }
         .modal-body .modal .current-title-info .cast .cast-node {
           display: inline-block;
-          margin: 10px 10px 10px 15px;
-          width: 25%; }
+          margin: 10px 0px 10px 15px;
+          width: 20%; }
           .modal-body .modal .current-title-info .cast .cast-node img {
             max-width: 100%; }
           .modal-body .modal .current-title-info .cast .cast-node .character {
@@ -290,8 +330,11 @@ button:hover {
           height: 18px;
           max-width: 100%;
           padding-left: 5px; }
-      .modal-body .modal .current-title-image .budget p {
+      .modal-body .modal .current-title-image .budget p, .modal-body .modal .current-title-image .director p {
         font-size: 90%; }
+      .modal-body .modal .current-title-image .budget span, .modal-body .modal .current-title-image .director span {
+        font-style: italic;
+        font-size: 110%; }
     .modal-body .modal .all-titles-sidebar {
       overflow: scroll;
       text-align: center;

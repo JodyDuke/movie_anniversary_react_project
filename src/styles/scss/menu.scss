@@ -1,6 +1,10 @@
 .menu {
-    background-color: pink;
+    background-color: #1980c1;
     height: 100%;
+
+    svg {
+        fill: #092b40;
+    }
 }
 
 .menu .logo {
@@ -21,7 +25,7 @@
 
 a {
     text-decoration: none;
-    color: black;
+    color: #092b40;
 }
 
 .desktop .logo {
@@ -64,7 +68,7 @@ a {
 .open-menu {
     width: 100vw;
     height: 141px;
-    background-color: pink;
+    background-color: #1980c1;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
