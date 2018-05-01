@@ -50,18 +50,23 @@
         text-align: justify; }
       .modal-body .modal .current-title-info .cast {
         margin: 20px 10px 0px 0px; }
+        .modal-body .modal .current-title-info .cast h3 {
+          margin-bottom: 0px; }
         .modal-body .modal .current-title-info .cast .cast-node {
           display: inline-block;
           margin: 10px 10px 10px 15px;
           width: 25%; }
           .modal-body .modal .current-title-info .cast .cast-node img {
             max-width: 100%; }
+          .modal-body .modal .current-title-info .cast .cast-node .character {
+            font-style: italic;
+            font-size: 80%; }
           .modal-body .modal .current-title-info .cast .cast-node p {
             text-align: center;
             margin: 0px;
             padding: 0px;
             max-width: 100%;
-            font-size: 80%; }
+            font-size: 90%; }
     .modal-body .modal .current-title-image {
       text-align: center;
       padding: 20px 25px 0px 0px;
@@ -128,8 +133,11 @@
       width: 100%;
       max-width: 100%;
       height: 100%;
-      max-height: 100%;
-      border-radius: 0px; }
+      max-height: 100%; }
+      .modal-body .modal .info .current-title-info, .modal-body .modal .info-single-title .current-title-info {
+        overflow: visible; }
+      .modal-body .modal .info .current-title-image, .modal-body .modal .info-single-title .current-title-image {
+        overflow: visible; }
       .modal-body .modal .info .close-bar .date, .modal-body .modal .info-single-title .close-bar .date {
         margin: 12px 0px auto 20px; }
       .modal-body .modal .info .close-bar .close, .modal-body .modal .info-single-title .close-bar .close {

@@ -122,11 +122,12 @@ class Modal extends Component {
                                     {this.state.currentTitleCredits.cast.map((e, k) => {
                                         let currentProfileImage = profile
                                         if(e.profile_path !== null){
-                                        currentProfileImage = tmdb.images.secure_base_url + tmdb.images.poster_sizes[1] + e.profile_path  
+                                            currentProfileImage = tmdb.images.secure_base_url + tmdb.images.poster_sizes[1] + e.profile_path  
                                         }                              
                                         return <div key={k} className="cast-node">
                                             <img src={currentProfileImage} alt={e.name} />
                                             <p>{e.name}</p>
+                                            <p className="character">{e.character}</p>
                                         </div>
                                     })}
                                 </div>
