@@ -50,13 +50,16 @@ class Modal extends Component {
             })
         )
         .then(data => {
-            const video = data[0].results[0].key
+            let video;
+            if(data[0].results[0]){
+                video = data[0].results[0].key
+            }
             const credits = data[1]
  
             this.setState({
-             currentTitleCredits: credits,
-             currentTitleVideoId: video,
-             currentTitleMiscInfo: data[2]
+                currentTitleCredits: credits,
+                currentTitleVideoId: video,
+                currentTitleMiscInfo: data[2]
             })}
         )
     }
@@ -80,10 +83,15 @@ class Modal extends Component {
             })
         )
             .then(data => {
+                let video;
+                if (data[0].results[0]) {
+                    video = data[0].results[0].key
+                }
+
                 this.setState({
                     currentTitleCredits: data[1],
                     currentTitleMiscInfo: data[2],
-                    currentTitleVideoId: data[0].results[0].key,
+                    currentTitleVideoId: video,
                     currentTitle: newCurrentTitle[0]
                 })
             })
@@ -134,24 +142,32 @@ class Modal extends Component {
 
                         <div className="current-title-image">
                             <img alt={this.state.currentTitle.title + " poster"} src={currentTitleImage} />
-                            <div className="trailer-link">
-                                <a target="_blank" href={'https://www.youtube.com/watch?v=' + this.state.currentTitleVideoId}>Trailer </a> 
-                                <LinkSVG />
-                            </div>
-                            <div className="director">
-                                <p>Director<br /><span>{director}</span></p>
-                            </div>
+                            {this.state.currentTitleVideoId ? 
+                                <div className="trailer-link">
+                                    <a target="_blank" href={'https://www.youtube.com/watch?v=' + this.state.currentTitleVideoId}>Trailer </a> 
+                                    <LinkSVG />
+                                </div>
+                            :
+                                null
+                            }
+                            {typeof director === 'string' ? 
+                                <div className="director">
+                                    <p>Director<br /><span>{director}</span></p>
+                                </div>
+                            :
+                                null
+                            }
                             {this.state.currentTitleMiscInfo !== undefined ? 
                                 <div className="budget">
                                     {this.state.currentTitleMiscInfo.budget > 0 ?
                                         <p>Budget<br /><span>${numberWithCommas(this.state.currentTitleMiscInfo.budget)}</span></p>
                                     :
-                                    null
+                                        null
                                     }
                                     {this.state.currentTitleMiscInfo.revenue > 0 ?
                                         <p>Revenue<br /><span>${numberWithCommas(this.state.currentTitleMiscInfo.revenue)}</span></p>
                                     :
-                                    null
+                                        null
                                     }
                                 </div>
                                 :
