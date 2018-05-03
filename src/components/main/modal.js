@@ -107,7 +107,6 @@ class Modal extends Component {
     }
 
     render(){
-        //console.log(this.state.currentTitleCredits)
         let director;
         if(this.state.currentTitleCredits !== undefined){
         const temp = this.state.currentTitleCredits.crew.find(e => e.job === 'Director')
