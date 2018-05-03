@@ -65,7 +65,8 @@
         .modal-body .modal .current-title-info .cast .cast-node {
           display: inline-block;
           margin: 10px 0px 10px 15px;
-          width: 20%; }
+          width: 20%;
+          vertical-align: top; }
           .modal-body .modal .current-title-info .cast .cast-node img {
             max-width: 100%; }
           .modal-body .modal .current-title-info .cast .cast-node .character {

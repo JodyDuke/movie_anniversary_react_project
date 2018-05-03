@@ -48,12 +48,16 @@
             color: white;
             font-weight: bold;
             font-size: 230%;
-            margin: 0;
+            margin: 0 0 3px 0;
             padding: 0;
+
+            sup {
+                font-size: 40%;
+            }
 
             span {
                 font-size: 30%;
-                margin-left: -7px;
+                margin-left: -10px;
             }
         }
 

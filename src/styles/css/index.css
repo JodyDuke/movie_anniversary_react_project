@@ -162,11 +162,13 @@ a {
       color: white;
       font-weight: bold;
       font-size: 230%;
-      margin: 0;
+      margin: 0 0 3px 0;
       padding: 0; }
+      .calendar-node .title-info .birthday sup {
+        font-size: 40%; }
       .calendar-node .title-info .birthday span {
         font-size: 30%;
-        margin-left: -7px; }
+        margin-left: -10px; }
     .calendar-node .title-info .title {
       color: white;
       margin: 0;
@@ -300,7 +302,8 @@ button:hover {
         .modal-body .modal .current-title-info .cast .cast-node {
           display: inline-block;
           margin: 10px 0px 10px 15px;
-          width: 20%; }
+          width: 20%;
+          vertical-align: top; }
           .modal-body .modal .current-title-info .cast .cast-node img {
             max-width: 100%; }
           .modal-body .modal .current-title-info .cast .cast-node .character {
