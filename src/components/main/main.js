@@ -1,8 +1,10 @@
 import React,{ Component } from "react";
 import { Route } from "react-router-dom";
 import Modal from './modal'
-import Settings from '../main/settings/settings';
-import Account from '../main/account/account';
+import Settings from './settings/settings';
+import Header from '../header/header';
+import SearchResults from './search/search_results';
+import Account from './account/account';
 import CalendarDesktop from "./responsive_components/calendar_desktop";
 import CalendarMobile from "./responsive_components/calendar_mobile";
 import { config } from '../../api/api_keys';
@@ -25,6 +27,7 @@ class Main extends Component {
         this.handleDateChange = this.handleDateChange.bind(this)
         this.getMovies = this.getMovies.bind(this)
         this.updateSettings = this.updateSettings.bind(this)
+        this.handleSearchQuery = this.handleSearchQuery.bind(this)
     }
 
 
@@ -138,19 +141,31 @@ class Main extends Component {
         }, () => this.getMovies())
     }
 
+    handleSearchQuery(props) {
+        this.setState({
+            search : props
+        })
+    }
+
 
     render() {
         return (
             <div className="main">
+                    {window.location.pathname.includes('movies') ? 
+                        null 
+                    :
+                        <Header handleDateChange={this.handleDateChange} searchQuery={this.handleSearchQuery} month={this.state.month} year={this.state.year} />
+                    }
                     <Route exact path='/' render={() => {
                             return this.props.responsive === 'desktop' ? 
-                            <CalendarDesktop month={this.state.month} year={this.state.year} data={this.state.totalCalendarSession} handleDateChange={this.handleDateChange} />
+                            <CalendarDesktop month={this.state.month} year={this.state.year} data={this.state.totalCalendarSession} />
                             :
-                            <CalendarMobile handleDateChange={this.handleDateChange} data={this.state.totalCalendarSession} month={this.state.month} year={this.state.year} />
+                            <CalendarMobile data={this.state.totalCalendarSession} month={this.state.month} year={this.state.year} />
                     }} />
                     <Route path='/movies/:id' render={() => <Modal data={this.state.totalCalendarSession}/>} />
                     <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} currentRegion={this.state.countrySelect} onSubmit={this.updateSettings}/>} />
                     <Route path="/account" render={() => <Account />} />
+                    <Route path="/search" render={() => <SearchResults searchQuery={this.state.search} country={this.state.countrySelect} />} />
             </div>
         )
     }
