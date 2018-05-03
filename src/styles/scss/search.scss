@@ -1,0 +1,33 @@
+.search-results {
+    margin: 10px;
+
+    .node {
+        width: calc(100% -60);
+        height: 120px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        margin: 5px 5px 5px 0px;
+        padding: 10px;
+
+        .poster {
+            display: inline-block;
+            height: 100%;
+        }
+
+        .poster img {
+            max-height: 100%;
+        }
+
+        .info {
+            display: inline-block;
+            margin: 10px;
+            vertical-align: top;
+
+            h3 {
+                margin: 0;
+                color: #111;
+                font-weight: 400;
+            }
+        }
+    }
+}
