@@ -8,7 +8,8 @@ export const tmdb = {
     regionSelect: 'https://api.themoviedb.org/3/configuration/countries?', //+ api_key
     region: '&region=',
     credits: '/credits?',
-    endString: '&vote_average.gte=5&without_genres=10770&with_original_language=en&with_release_type=2|3',
+    search: 'search/movie?',
+    endString: '&vote_average.gte=5&without_genres=10770&with_release_type=2|3',
     images : {
         base_url: "http://image.tmdb.org/t/p/",
         secure_base_url: "https://image.tmdb.org/t/p/",
