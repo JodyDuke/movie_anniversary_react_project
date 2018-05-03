@@ -1,5 +1,4 @@
 import React,{ Component } from "react";
-import Header from '../../header/header';
 import { days } from '../../utils/days';
 
 
@@ -10,8 +9,6 @@ class CalendarDesktop extends Component {
         this.state = {
             currentCalendarView : undefined,
         }
-
-        this.handleClickFromChild = this.handleClickFromChild.bind(this)
     }
 
     componentDidMount(){
@@ -42,15 +39,10 @@ class CalendarDesktop extends Component {
         }
     }
 
-    handleClickFromChild(data) {
-        this.props.handleDateChange(data);
-    }
-
     render() {  
         const daysMap = days.map((item, i) => <div className="days" key={i}>{item}</div>)
         return (
             <div>
-                <Header handleClickFromChild={this.handleClickFromChild} month={this.props.month} year={this.props.year} />
                 <div className="calendar">
                     {daysMap}
                     {this.state.currentCalendarView ? this.state.currentCalendarView : '...loading'}
