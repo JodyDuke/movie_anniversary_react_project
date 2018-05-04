@@ -110,6 +110,7 @@ class Modal extends Component {
     }
 
     render(){
+        console.log(this.state.currentTitle)
         let language;
         if(this.state.languages){
             language = convertLanguage(this.state.currentTitle.original_language, this.state.languages)
@@ -163,6 +164,10 @@ class Modal extends Component {
                             :
                                 null
                             }
+
+                            <div className="release-date">
+                                <p>Release date<br /><span>release date</span></p>
+                            </div>
 
                             {this.state.currentTitle.original_language ?
                                 <div className="language">
