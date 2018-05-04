@@ -1,6 +1,8 @@
 import React,{ Component } from "react";
 import { tmdb } from "../../../api/tmdb";
 import { config } from "../../../api/api_keys";
+import { formatSearchData } from '../../utils/search_result_data';
+import {numToMonth } from '../../utils/num_to_month'
 
 export default class SearchResults extends Component {
     constructor(props){
@@ -26,13 +28,16 @@ export default class SearchResults extends Component {
     }
 
     searchMovies() {
-        fetch(tmdb.url + tmdb.search + config.TMDB_KEY + '&language=en-US&query=' + this.state.query + '&page=' + this.state.page + '&include_adult=false&' + this.props.country, {
+        fetch(tmdb.url + tmdb.search + config.TMDB_KEY + '&language=en-US&query=' + this.state.query + '&page=' + this.state.page + '&include_adult=false&region=' + this.props.country, {
             callback: 'test'
         })
         .then(response => response.json())
-        .then(data => this.setState({
-            searchResults : data
-        }))
+        .then(data => {
+            let formatData = formatSearchData(data, this.props.yearsSettings)
+            this.setState({
+                searchResults: formatData
+            })
+        })
     }
 
     render() {
@@ -66,6 +71,7 @@ class ResultNode extends Component {
                 </div>
                 <div className="info">
                     <h3>{this.props.movie.original_title}</h3>
+                    <p>next anniversary: {this.props.movie.next_anniversary} on {this.props.movie.anniversary_day} {numToMonth(this.props.movie.anniversary_month)} {this.props.movie.next_anniversary_year}</p>
                 </div>
             </div>
         )
