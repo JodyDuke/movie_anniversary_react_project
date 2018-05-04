@@ -7,6 +7,7 @@ import { numToMonth } from '../utils/num_to_month';
 import LinkSVG from '../../images/link';
 import { numberWithCommas } from '../utils/num_with_commas';
 import profile from '../../images/profile.png';
+import { convertLanguage } from '../utils/languange_converter';
 
 
 class Modal extends Component {
@@ -39,7 +40,8 @@ class Modal extends Component {
         const url = [
             tmdb.url + tmdb.movie + this.state.currentTitle.id + tmdb.videos + config.TMDB_KEY,
             tmdb.url + tmdb.movie + this.state.currentTitle.id + tmdb.credits + config.TMDB_KEY,
-            tmdb.url + tmdb.movie + this.state.currentTitle.id + '?' + config.TMDB_KEY
+            tmdb.url + tmdb.movie + this.state.currentTitle.id + '?' + config.TMDB_KEY,
+            tmdb.url + tmdb.languages + config.TMDB_KEY
         ];
         Promise.all(
             url.map(e => {
@@ -59,7 +61,8 @@ class Modal extends Component {
             this.setState({
                 currentTitleCredits: credits,
                 currentTitleVideoId: video,
-                currentTitleMiscInfo: data[2]
+                currentTitleMiscInfo: data[2],
+                languages: data[3]
             })}
         )
     }
@@ -71,7 +74,6 @@ class Modal extends Component {
             tmdb.url + tmdb.movie + newCurrentTitle[0].id + tmdb.videos + config.TMDB_KEY,
             tmdb.url + tmdb.movie + newCurrentTitle[0].id + tmdb.credits + config.TMDB_KEY,
             tmdb.url + tmdb.movie + newCurrentTitle[0].id + '?' + config.TMDB_KEY
-            
         ];
 
         Promise.all(
@@ -93,6 +95,7 @@ class Modal extends Component {
                     currentTitleMiscInfo: data[2],
                     currentTitleVideoId: video,
                     currentTitle: newCurrentTitle[0]
+                    
                 })
             })
     }
@@ -107,6 +110,10 @@ class Modal extends Component {
     }
 
     render(){
+        let language;
+        if(this.state.languages){
+            language = convertLanguage(this.state.currentTitle.original_language, this.state.languages)
+        }
         let director;
         if(this.state.currentTitleCredits !== undefined){
         const temp = this.state.currentTitleCredits.crew.find(e => e.job === 'Director')
@@ -156,6 +163,15 @@ class Modal extends Component {
                             :
                                 null
                             }
+
+                            {this.state.currentTitle.original_language ?
+                                <div className="language">
+                                    <p>Original language<br /><span>{language}</span></p>
+                                </div>
+                            :
+                                null
+                            }
+
                             {this.state.currentTitleMiscInfo !== undefined ? 
                                 <div className="budget">
                                     {this.state.currentTitleMiscInfo.budget > 0 ?
