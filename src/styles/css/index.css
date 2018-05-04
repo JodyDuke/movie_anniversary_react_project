@@ -432,7 +432,10 @@ button:hover {
 .search-results {
   margin: 10px; }
   .search-results .node {
-    width: calc(80%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: calc(100% - 30px);
     height: 120px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 5px;
@@ -444,14 +447,42 @@ button:hover {
     .search-results .node .poster img {
       max-height: 100%; }
     .search-results .node .info {
-      display: inline-block;
       margin: 10px;
+      height: 100%;
+      width: 60%;
+      flex-grow: 1;
       vertical-align: top; }
       .search-results .node .info h3 {
         margin: 0;
-        color: #111;
-        font-weight: 400; }
+        font-weight: bold;
+        color: #111; }
       .search-results .node .info p {
+        margin: 5px 0 0 0;
         display: inline-block; }
+    .search-results .node .anniversary-box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: white;
+      border-radius: 5px;
+      padding: 10px;
+      display: block;
+      float: right;
+      text-align: center;
+      margin: 10px 10px 10px 10px; }
+      .search-results .node .anniversary-box h6 {
+        font-size: 90%;
+        margin: 0;
+        padding: 0 15px 0 15px; }
+      .search-results .node .anniversary-box h4 {
+        font-size: 160%;
+        padding: 15px;
+        margin: 0; }
+        .search-results .node .anniversary-box h4 sup {
+          font-size: 50%; }
+      .search-results .node .anniversary-box p {
+        margin: 0; }
+        .search-results .node .anniversary-box p sup {
+          font-size: 70%; }
 
 /*# sourceMappingURL=index.css.map */
