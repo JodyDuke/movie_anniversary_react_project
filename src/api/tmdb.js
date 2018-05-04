@@ -7,6 +7,7 @@ export const tmdb = {
     releaseLessThan: '&release_date.lte=',
     regionSelect: 'https://api.themoviedb.org/3/configuration/countries?', //+ api_key
     region: '&region=',
+    languages: 'configuration/languages?',
     credits: '/credits?',
     search: 'search/movie?',
     endString: '&vote_average.gte=5&without_genres=10770&with_release_type=2|3',
