@@ -2,7 +2,8 @@ import React,{ Component } from "react";
 import { tmdb } from "../../../api/tmdb";
 import { config } from "../../../api/api_keys";
 import { formatSearchData } from '../../utils/search_result_data';
-import {numToMonth } from '../../utils/num_to_month'
+import {numToMonth } from '../../utils/num_to_month';
+import { daySup } from '../../utils/day_sup_map';
 
 export default class SearchResults extends Component {
     constructor(props){
@@ -71,7 +72,12 @@ class ResultNode extends Component {
                 </div>
                 <div className="info">
                     <h3>{this.props.movie.original_title}</h3>
-                    <p>next anniversary: {this.props.movie.next_anniversary} on {this.props.movie.anniversary_day} {numToMonth(this.props.movie.anniversary_month)} {this.props.movie.next_anniversary_year}</p>
+                    <p>{this.props.movie.overview}</p>
+                </div>
+                <div className="anniversary-box">
+                    <h6>Next anniversary</h6>
+                    <h4>{this.props.movie.next_anniversary}<sup>th</sup></h4>
+                    <p>{this.props.movie.anniversary_day}<sup>{daySup(this.props.movie.anniversary_day)}</sup> {numToMonth(this.props.movie.anniversary_month)} {this.props.movie.next_anniversary_year}</p>                    
                 </div>
             </div>
         )
