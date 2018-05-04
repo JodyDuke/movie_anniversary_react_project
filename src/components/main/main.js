@@ -165,7 +165,7 @@ class Main extends Component {
                     <Route path='/movies/:id' render={() => <Modal data={this.state.totalCalendarSession}/>} />
                     <Route path="/settings" render={() => <Settings yearsSelect={this.state.yearsSelect} currentRegion={this.state.countrySelect} onSubmit={this.updateSettings}/>} />
                     <Route path="/account" render={() => <Account />} />
-                    <Route path="/search" render={() => <SearchResults searchQuery={this.state.search} country={this.state.countrySelect} />} />
+                    <Route path="/search" render={() => <SearchResults searchQuery={this.state.search} yearsSettings={this.state.yearsSelect} country={this.state.countrySelect} />} />
             </div>
         )
     }
