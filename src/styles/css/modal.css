@@ -21,7 +21,7 @@
       min-height: 400px;
       height: 90%;
       max-height: 90vh;
-      background-color: rgba(0, 0, 0, 0.95);
+      background-color: rgba(0, 0, 0, 0.8);
       border-radius: 5px;
       color: white; }
       .modal-body .modal .info-single-title .current-title-info {
@@ -97,9 +97,9 @@
           height: 18px;
           max-width: 100%;
           padding-left: 5px; }
-      .modal-body .modal .current-title-image .budget p, .modal-body .modal .current-title-image .director p {
+      .modal-body .modal .current-title-image .budget p, .modal-body .modal .current-title-image .director p, .modal-body .modal .current-title-image .language p {
         font-size: 90%; }
-      .modal-body .modal .current-title-image .budget span, .modal-body .modal .current-title-image .director span {
+      .modal-body .modal .current-title-image .budget span, .modal-body .modal .current-title-image .director span, .modal-body .modal .current-title-image .language span {
         font-style: italic;
         font-size: 110%; }
     .modal-body .modal .all-titles-sidebar {
