@@ -4,6 +4,7 @@ import { config } from "../../../api/api_keys";
 import { formatSearchData } from '../../utils/search_result_data';
 import {numToMonth } from '../../utils/num_to_month';
 import { daySup } from '../../utils/day_sup_map';
+import Loading from '../loading';
 
 export default class SearchResults extends Component {
     constructor(props){
@@ -54,7 +55,7 @@ export default class SearchResults extends Component {
                     }
             }) 
             : 
-            'Loading...'
+            <Loading />
         }
 
             </div>

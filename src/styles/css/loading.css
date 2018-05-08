@@ -1,0 +1,11 @@
+.load {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: calc(100% - 70px);
+  height: calc(100% - 70px); }
+  .load svg {
+    margin: 0px auto; }
+
+/*# sourceMappingURL=loading.css.map */

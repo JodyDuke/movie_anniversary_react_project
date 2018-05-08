@@ -1,5 +1,6 @@
 import React,{ Component } from "react";
 import { days } from '../../utils/days';
+import Loading from '../loading';
 
 
 
@@ -45,7 +46,7 @@ class CalendarDesktop extends Component {
             <div>
                 <div className="calendar">
                     {daysMap}
-                    {this.state.currentCalendarView ? this.state.currentCalendarView : '...loading'}
+                    {this.state.currentCalendarView ? this.state.currentCalendarView : <Loading />}
                 </div>
             </div>
         )
