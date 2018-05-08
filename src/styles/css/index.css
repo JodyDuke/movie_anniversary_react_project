@@ -145,7 +145,12 @@ a {
       fill: #092b40; }
   .header .month {
     display: inline-block;
+    text-align: center;
     padding: 0px 5px; }
+    .header .month .text {
+      margin: 0px 0px;
+      display: inline-block;
+      min-width: 90px; }
   .header .year {
     display: inline-block;
     padding: 0px 10px 0px 0px; }
@@ -484,5 +489,15 @@ button:hover {
         margin: 0; }
         .search-results .node .anniversary-box p sup {
           font-size: 70%; }
+
+.load {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: calc(100% - 70px);
+  height: calc(100% - 70px); }
+  .load svg {
+    margin: 0px auto; }
 
 /*# sourceMappingURL=index.css.map */

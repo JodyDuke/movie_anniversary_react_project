@@ -41,7 +41,12 @@
       fill: #092b40; }
   .header .month {
     display: inline-block;
+    text-align: center;
     padding: 0px 5px; }
+    .header .month .text {
+      margin: 0px 0px;
+      display: inline-block;
+      min-width: 90px; }
   .header .year {
     display: inline-block;
     padding: 0px 10px 0px 0px; }

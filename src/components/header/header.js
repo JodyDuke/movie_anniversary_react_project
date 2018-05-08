@@ -36,7 +36,7 @@ class Header extends Component {
                 :     
                     <div className="date-input">
                         <div className="month">
-                            <button onClick={() => this.handleClick('monthDown')}><ChevronLeft/></button>{numToMonth(this.props.month)}<button onClick={() => this.handleClick('monthUp')}><ChevronRight/></button>
+                            <button onClick={() => this.handleClick('monthDown')}><ChevronLeft/></button><span className="text">{numToMonth(this.props.month)}</span><button onClick={() => this.handleClick('monthUp')}><ChevronRight/></button>
                         </div>
 
                         <div className="year">
