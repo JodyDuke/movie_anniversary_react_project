@@ -94,7 +94,8 @@
           color: white; }
         .modal-body .modal .current-title-image .trailer-link svg {
           fill: white;
-          height: 18px;
+          height: 10px;
+          width: 10px;
           max-width: 100%;
           padding-left: 5px; }
       .modal-body .modal .current-title-image .budget p, .modal-body .modal .current-title-image .director p, .modal-body .modal .current-title-image .language p, .modal-body .modal .current-title-image .release-date p {
