@@ -84,8 +84,9 @@
       padding: 20px 25px 0px 0px;
       height: 100%; }
       .modal-body .modal .current-title-image img {
-        padding-bottom: 5px;
-        max-width: 100%; }
+        margin-bottom: 15px;
+        max-width: 100%;
+        border: 2px solid white; }
       .modal-body .modal .current-title-image .trailer-link {
         display: flex;
         align-items: center;
@@ -115,6 +116,8 @@
         .modal-body .modal .all-titles-sidebar .title-sidebar h5 {
           margin: 0;
           padding: 0; }
+        .modal-body .modal .all-titles-sidebar .title-sidebar img {
+          border: 2px solid #fff; }
     .modal-body .modal .close-bar {
       width: 100%;
       grid-column: 1/4;

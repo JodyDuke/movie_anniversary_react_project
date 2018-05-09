@@ -123,8 +123,9 @@
                 height: 100%;
 
                 img {
-                    padding-bottom: 5px;
+                    margin-bottom: 15px;
                     max-width: 100%;
+                    border: 2px solid white;
                 }
 
                 .trailer-link{
@@ -171,6 +172,10 @@
                     h5 {
                         margin: 0;
                         padding: 0;
+                    }
+
+                    img {
+                        border: 2px solid #fff;
                     }
 
                 }
