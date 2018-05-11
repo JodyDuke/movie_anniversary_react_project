@@ -295,13 +295,7 @@ class Modal extends Component {
               />
               {this.state.currentTitleVideoId ? (
                 <div className="trailer-link">
-                  <a
-                    target="_blank"
-                    href={
-                      "https://www.youtube.com/watch?v=" +
-                      this.state.currentTitleVideoId
-                    }
-                  >
+                  <a target="_blank" href={"https://www.youtube.com/watch?v=" + this.state.currentTitleVideoId}>
                     Trailer{" "}
                   </a>
                   <LinkSVG />
@@ -318,8 +312,8 @@ class Modal extends Component {
 
               <div className="release-date">
                 <p>
-                  Release date<br />
-                  <span>release date</span>
+                  Release year<br />
+                  <span>{this.state.currentTitle.release_date.slice(0, 4)}</span>
                 </p>
               </div>
 
