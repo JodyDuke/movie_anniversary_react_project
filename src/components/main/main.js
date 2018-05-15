@@ -191,6 +191,7 @@ class Main extends Component {
             searchQuery={this.handleSearchQuery}
             month={this.state.month}
             year={this.state.year}
+            responsive={this.props.responsive}
           />
         )}
         <Route

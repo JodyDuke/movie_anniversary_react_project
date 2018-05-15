@@ -16,6 +16,12 @@
     height: 26px;
     width: 26px;
     padding: 4px 20px 0 0; }
+  .header .date-select-icon svg {
+    display: inline-block;
+    fill: #092b40;
+    height: 26px;
+    width: 26px;
+    padding: 4px 20px 0 0; }
   .header .search {
     margin: 0 0 0 10px;
     border: 1px solid #111;
@@ -52,5 +58,9 @@
     padding: 0px 10px 0px 0px; }
   .header .error {
     border: 1px solid red; }
+
+@media (max-width: 768px) {
+  .header .search {
+    width: 70%; } }
 
 /*# sourceMappingURL=header.css.map */
