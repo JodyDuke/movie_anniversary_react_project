@@ -20,7 +20,7 @@ class CalendarMobile extends Component {
     handleScroll = (ev) => {
         ev.preventDefault()
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-            this.props.handleDateChange('monthUp')
+            this.props.handleChange('monthUp')
         }
     };
 

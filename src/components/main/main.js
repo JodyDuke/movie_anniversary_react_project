@@ -209,6 +209,7 @@ class Main extends Component {
                 data={this.state.totalCalendarSession}
                 month={this.state.month}
                 year={this.state.year}
+                handleChange={this.handleDateChange}
               />
             );
           }}
