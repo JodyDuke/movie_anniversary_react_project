@@ -32,7 +32,7 @@ class MenuMobile extends Component {
                     <div className="hamburger">
                         <a href="" onClick={this.toggleCollapse}><Hamburger /></a> 
                     </div>
-                    {this.state.collapsed ? '' : 
+                    {this.state.collapsed ? null : 
                     <div className="open-menu">
                         <div className="link">
                             <Link to='/account'>
